@@ -3,10 +3,11 @@ package com.example.wbdvsu1projectserverjava.models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Job {
-
+  @Id
   private String id;
   private String type;
   private String url;
