@@ -16,19 +16,20 @@ public class JobController {
   JobService jobService;
 
 
-  @PostMapping("/api/job")
+  @PostMapping("/api/jobs")
   public boolean createUser(@RequestBody Job job) {
     return jobService.createJob(job);
   }
 
   @GetMapping("/api/job/{skill}/[location}")
-  public Iterable<Job> getAllJobs(@PathVariable String skill, @PathVariable String location) {
+  public Iterable<Job> getAllJobs(@PathVariable String skill, @PathVariable("location") String location) {
     return jobService.getAllJobs(skill, location);
   }
 
   @PutMapping("/api/job/{jobId}")
-  public boolean updateUser(@PathVariable String jobId, Job newJob) {
+  public boolean updateJob(@PathVariable("jobId") String jobId, Job newJob) {
     return jobService.updateJob(jobId, newJob);
   }
+
 
 }
