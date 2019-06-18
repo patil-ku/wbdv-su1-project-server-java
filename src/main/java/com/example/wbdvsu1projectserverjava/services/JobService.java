@@ -4,9 +4,13 @@ import com.example.wbdvsu1projectserverjava.models.Job;
 import com.example.wbdvsu1projectserverjava.repositories.JobRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+@CrossOrigin("*")
+@RestController
 public class JobService {
 
   @Autowired
@@ -16,7 +20,7 @@ public class JobService {
     return true;
   }
 
-  public Iterable<Job> getAllJobs(String skill, String location) {
+  public Iterable<Job> getSpecificJobs(String skill, String location) {
     return jobRepository.findAll();
   }
 
@@ -25,5 +29,9 @@ public class JobService {
     job.get().setTitle(newJob.getTitle());
     jobRepository.save(job.get());
     return true;
+  }
+
+  public Iterable<Job> getAllJobs() {
+    return jobRepository.findAll();
   }
 }

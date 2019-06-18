@@ -14,10 +14,15 @@ public class SavedUserJobs {
   private int user_id;
   private String job_id;
 
+  public SavedUserJobs() {
+
+  }
+
   public SavedUserJobs(int userId, String jobId) {
     this.user_id = userId;
     this.job_id = jobId;
   }
+
 
   public int getId() {
     return id;

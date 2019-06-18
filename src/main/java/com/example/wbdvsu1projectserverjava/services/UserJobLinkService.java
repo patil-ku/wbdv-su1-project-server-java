@@ -6,10 +6,14 @@ import com.example.wbdvsu1projectserverjava.repositories.JobRepository;
 import com.example.wbdvsu1projectserverjava.repositories.UserJobLinkRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin("*")
+@RestController
 public class UserJobLinkService {
 
   @Autowired
