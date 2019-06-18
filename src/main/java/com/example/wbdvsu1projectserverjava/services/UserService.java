@@ -21,7 +21,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 
-@CrossOrigin("*")
+@CrossOrigin(allowCredentials = "true")
 @RestController
 public class UserService {
 
@@ -29,9 +29,10 @@ public class UserService {
   UserRepository userRepository;
 
 
-  @GetMapping("api/loggedIn")
-  public boolean isSessionMaintained(HttpSession session) {
-    if (session != null) {
+  @GetMapping("api/loggedIn/{username}")
+  public boolean isSessionMaintained(@PathVariable("username") String username, HttpSession session) {
+    if (session != null
+            && session.getAttribute("currUser").toString().equalsIgnoreCase(username)) {
       return true;
     }
     return false;
