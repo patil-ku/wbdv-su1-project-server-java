@@ -1,5 +1,7 @@
 package com.example.wbdvsu1projectserverjava.services;
 
+import com.example.wbdvsu1projectserverjava.models.Recruiter;
+import com.example.wbdvsu1projectserverjava.models.Student;
 import com.example.wbdvsu1projectserverjava.models.User;
 import com.example.wbdvsu1projectserverjava.repositories.UserRepository;
 
@@ -27,8 +29,22 @@ public class UserService {
   UserRepository userRepository;
 
 
-  @PostMapping("/api/register")
-  public User createUser(@RequestBody User user, HttpSession session) {
+  @GetMapping("api/loggedIn")
+  public boolean isSessionMaintained(HttpSession session) {
+    if (session != null) {
+      return true;
+    }
+    return false;
+  }
+
+  @PostMapping("/api/register/student")
+  public User createStudent(@RequestBody Student user, HttpSession session) {
+    session.setAttribute("currUser", user);
+    return userRepository.save(user);
+  }
+
+  @PostMapping("/api/register/recruiter")
+  public User createRecruiter(@RequestBody Recruiter user, HttpSession session) {
     session.setAttribute("currUser", user);
     return userRepository.save(user);
   }
@@ -63,8 +79,14 @@ public class UserService {
 
   @GetMapping("/api/user/{userId}")
   public User findUserById(
-          @PathVariable("userId") Integer userId) {
-    return userRepository.findById(userId).get();
+          @PathVariable("userId") Integer userId,
+          HttpSession session) {
+    User user = userRepository.findById(userId).get();
+
+    if (session.getAttribute("currUser") == user.getUsername()) {
+      user.setPhone("");
+    }
+    return user;
   }
 
   @PutMapping("/api/user/{userId}")
@@ -90,8 +112,8 @@ public class UserService {
     System.out.print("DELETERE");
   }
 
-  @GetMapping("/api/users/{userName}")
-  public Iterable<User> searchUserProfiles(@PathVariable("userName") String username) {
+  @GetMapping("/api/users/searchUserProfiles/{userId}")
+  public Iterable<User> searchUserProfiles(@PathVariable("userId") String username) {
     return userRepository.searchUserProfiles(username);
   }
 

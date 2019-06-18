@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-  @Query("SELECT user FROM User user where dtype='User' and username like %:username%")
+  @Query("SELECT user FROM User user where first_name='User' and username like %:username%")
   public Iterable<User> searchUserProfiles(@Param("username") String username);
 
 }

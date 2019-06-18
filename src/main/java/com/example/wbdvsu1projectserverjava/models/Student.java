@@ -1,14 +1,26 @@
 package com.example.wbdvsu1projectserverjava.models;
 
+import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
+@DiscriminatorValue("Student")
 public class Student extends User {
 
   private String university;
   private float gpa;
   private String linkedIn;
   private String degree;
+
+  @ElementCollection(targetClass = Skills.class)
+  @Enumerated(EnumType.STRING)
+  private List<Skills> skills;
+
 
   public String getUniversity() {
     return university;
@@ -42,5 +54,11 @@ public class Student extends User {
     this.degree = degree;
   }
 
+  public List<Skills> getSkills() {
+    return skills;
+  }
 
+  public void setSkills(List<Skills> skills) {
+    this.skills = skills;
+  }
 }

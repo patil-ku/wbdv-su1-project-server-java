@@ -1,8 +1,10 @@
 package com.example.wbdvsu1projectserverjava.models;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("Recruiter")
 public class Recruiter extends User {
 
   private String company;
