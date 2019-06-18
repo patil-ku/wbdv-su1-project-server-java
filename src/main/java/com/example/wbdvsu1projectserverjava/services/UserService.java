@@ -31,8 +31,9 @@ public class UserService {
 
   @GetMapping("api/loggedIn/{username}")
   public boolean isSessionMaintained(@PathVariable("username") String username, HttpSession session) {
+  	User currUser = (User) session.getAttribute("currUser");
     if (session != null
-            && session.getAttribute("currUser").toString().equalsIgnoreCase(username)) {
+            && currUser.getUsername().equalsIgnoreCase(username)) {
       return true;
     }
     return false;
