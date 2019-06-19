@@ -118,4 +118,7 @@ public class UserService {
     return userRepository.searchUserProfiles(username);
   }
 
+  public Iterable<User> getAllUsersForSkill(String skill) {
+    return userRepository.getAllUsersForSkill(skill);
+  }
 }

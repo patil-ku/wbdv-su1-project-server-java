@@ -28,6 +28,11 @@ public class FollowUsersController {
     return followUsersService.getAllFollowingUsers(userId);
   }
 
+  @GetMapping("/api/linkUsers/followers/{userId}")
+  private Iterable<User> getAllMyFollowers(@PathVariable("userId") int userId) {
+    return followUsersService.getAllMyFollowers(userId);
+  }
+
   @DeleteMapping("/api/linkUsers/{userId}/{followingUserId}")
   private boolean deleteLinkedUsers(@PathVariable("userId") int userId, @PathVariable("followingUserId") int followingUserId) {
     return followUsersService.deleteLinkedUsers(userId, followingUserId);

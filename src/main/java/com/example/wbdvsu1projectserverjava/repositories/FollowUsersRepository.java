@@ -10,4 +10,7 @@ public interface FollowUsersRepository extends CrudRepository<FollowUsers, Follo
 
   @Query("SELECT a from FollowUsers a where a.followUsersPK.userId = :userId")
   Iterable<FollowUsers> getAllFollowingUsers(int userId);
+
+  @Query("SELECT a from FollowUsers a where a.followUsersPK.followingUserId = :followingUserId")
+  Iterable<FollowUsers> getAllMyFollowers(int followingUserId);
 }

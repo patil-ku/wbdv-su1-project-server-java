@@ -41,4 +41,13 @@ public class FollowUsersService {
     }
     return userRepository.findAllById(allUserIds);
   }
+
+  public Iterable<User> getAllMyFollowers(int userId) {
+    Iterable<FollowUsers> followUsers = followUsersRepository.getAllMyFollowers(userId);
+    List<Integer> allUserIds = new ArrayList<>();
+    for (FollowUsers followUsers1 : followUsers) {
+      allUserIds.add(followUsers1.getFollowUsersPK().getUserId());
+    }
+    return userRepository.findAllById(allUserIds);
+  }
 }
