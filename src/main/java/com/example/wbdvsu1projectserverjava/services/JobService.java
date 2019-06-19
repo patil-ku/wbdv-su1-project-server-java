@@ -1,7 +1,9 @@
 package com.example.wbdvsu1projectserverjava.services;
 
 import com.example.wbdvsu1projectserverjava.models.Job;
+import com.example.wbdvsu1projectserverjava.models.Recruiter;
 import com.example.wbdvsu1projectserverjava.repositories.JobRepository;
+import com.example.wbdvsu1projectserverjava.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,8 +18,17 @@ public class JobService {
   @Autowired
   JobRepository jobRepository;
 
-  public boolean createJob(Job job) {
+  @Autowired
+  UserRepository userRepository;
+
+  @Autowired
+  UserJobLinkService userJobLinkService;
+
+  public boolean createJob(Job job, int userId) {
+    Recruiter recruiter = (Recruiter) userRepository.findById(userId).get();
+    job.setRecruiter(recruiter);
     jobRepository.save(job);
+    userJobLinkService.saveJobForUser(userId, job.getId());
     return true;
   }
 

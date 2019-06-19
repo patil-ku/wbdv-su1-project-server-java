@@ -1,7 +1,6 @@
 package com.example.wbdvsu1projectserverjava.controller;
 
 import com.example.wbdvsu1projectserverjava.models.Job;
-import com.example.wbdvsu1projectserverjava.models.Recruiter;
 import com.example.wbdvsu1projectserverjava.repositories.UserRepository;
 import com.example.wbdvsu1projectserverjava.services.JobService;
 
@@ -25,9 +24,7 @@ public class JobController {
 
   @PostMapping("/api/jobs/{userId}")
   public boolean createUser(@RequestBody Job job, @PathVariable("userId") int userId) {
-    Recruiter recruiter = (Recruiter) userRepository.findById(userId).get();
-    job.setRecruiter(recruiter);
-    return jobService.createJob(job);
+    return jobService.createJob(job, userId);
   }
 
   @GetMapping("/api/jobs/{skill}/[location}")

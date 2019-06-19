@@ -22,7 +22,7 @@ public class UserJobLinkController {
   @Autowired
   JobService jobService;
 
-  @GetMapping("/api/userjoblink/{userId}")
+  @GetMapping("/api/userJobLink/{userId}")
   public Iterable<Job> getAllJobsForAUser(@PathVariable("userId") int userId) {
     return userJobLinkService.getAllJobsForAUser(userId);
 
@@ -40,7 +40,7 @@ public class UserJobLinkController {
 
   @PostMapping("/api/userJobLink/{userId}")
   public boolean saveJobForUser(@PathVariable("userId") int userId, @RequestBody Job job) {
-    jobService.createJob(job);
+    jobService.createJob(job,userId);
     userJobLinkService.saveJobForUser(userId, job.getId());
     return true;
   }
