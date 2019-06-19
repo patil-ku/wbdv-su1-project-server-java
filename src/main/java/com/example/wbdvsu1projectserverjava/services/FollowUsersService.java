@@ -8,11 +8,13 @@ import com.example.wbdvsu1projectserverjava.repositories.FollowUsersRepository;
 import com.example.wbdvsu1projectserverjava.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 public class FollowUsersService {
   @Autowired

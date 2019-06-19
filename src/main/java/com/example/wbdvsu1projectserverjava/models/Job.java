@@ -2,13 +2,7 @@ package com.example.wbdvsu1projectserverjava.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -18,17 +12,17 @@ public class Job {
   private String id;
   private String type;
   private String url;
-  private Date createdAt;
+  private String createdAt;
   @ManyToOne
   @JsonIgnore
   private Recruiter recruiter;
   private String company;
-  private String company_url;
-  private String address;
+  private String companyUrl;
+  private String location;
   private String title;
   private String description;
-  private String applicationDetails;
-  private String logoDetails;
+  private String howToApply;
+  private String companyLogo;
 
   public String getId() {
     return id;
@@ -54,11 +48,11 @@ public class Job {
     this.url = url;
   }
 
-  public Date getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -70,20 +64,20 @@ public class Job {
     this.company = company;
   }
 
-  public String getCompany_url() {
-    return company_url;
+  public String getCompanyUrl() {
+    return companyUrl;
   }
 
-  public void setCompany_url(String company_url) {
-    this.company_url = company_url;
+  public void setCompanyUrl(String companyUrl) {
+    this.companyUrl = companyUrl;
   }
 
-  public String getAddress() {
-    return address;
+  public String getLocation() {
+    return location;
   }
 
-  public void setAddress(String address) {
-    this.address = address;
+  public void setLocation(String location) {
+    this.location = location;
   }
 
   public String getTitle() {
@@ -102,20 +96,20 @@ public class Job {
     this.description = description;
   }
 
-  public String getApplicationDetails() {
-    return applicationDetails;
+  public String getHowToApply() {
+    return howToApply;
   }
 
-  public void setApplicationDetails(String applicationDetails) {
-    this.applicationDetails = applicationDetails;
+  public void setHowToApply(String howToApply) {
+    this.howToApply = howToApply;
   }
 
-  public String getLogoDetails() {
-    return logoDetails;
+  public String getCompanyLogo() {
+    return companyLogo;
   }
 
-  public void setLogoDetails(String logoDetails) {
-    this.logoDetails = logoDetails;
+  public void setCompanyLogo(String companyLogo) {
+    this.companyLogo = companyLogo;
   }
 
   public Recruiter getRecruiter() {
