@@ -1,9 +1,12 @@
 package com.example.wbdvsu1projectserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Job {
@@ -12,6 +15,9 @@ public class Job {
   private String type;
   private String url;
   private Date createdAt;
+  @ManyToOne
+  @JsonIgnore
+  private Recruiter recruiter;
   private String company;
   private String company_url;
   private String address;
@@ -106,5 +112,13 @@ public class Job {
 
   public void setLogoDetails(String logoDetails) {
     this.logoDetails = logoDetails;
+  }
+
+  public Recruiter getRecruiter() {
+    return recruiter;
+  }
+
+  public void setRecruiter(Recruiter recruiter) {
+    this.recruiter = recruiter;
   }
 }

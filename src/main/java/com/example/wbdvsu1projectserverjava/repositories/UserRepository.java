@@ -12,4 +12,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   @Query("SELECT user FROM User user where first_name like %:username% or username like %:username%")
   public Iterable<User> searchUserProfiles(@Param("username") String username);
 
+
+
 }

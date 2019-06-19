@@ -15,6 +15,7 @@ public class JobService {
 
   @Autowired
   JobRepository jobRepository;
+
   public boolean createJob(Job job) {
     jobRepository.save(job);
     return true;

@@ -1,6 +1,7 @@
 package com.example.wbdvsu1projectserverjava.controller;
 
 import com.example.wbdvsu1projectserverjava.models.Job;
+import com.example.wbdvsu1projectserverjava.services.JobService;
 import com.example.wbdvsu1projectserverjava.services.UserJobLinkService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("*")
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserJobLinkController {
   @Autowired
   UserJobLinkService userJobLinkService;
+
+  @Autowired
+  JobService jobService;
 
   @GetMapping("/api/userjoblink/{userId}")
   public Iterable<Job> getAllJobsForAUser(@PathVariable("userId") int userId) {
@@ -25,7 +30,7 @@ public class UserJobLinkController {
 
   @DeleteMapping("/api/userJobLink/{userId}{jobId:(/jobId/[^/]+?)?}")
   public boolean deleteJobForUser(@PathVariable("userID") int userId, @PathVariable("jobId") String jobId) {
-    return userJobLinkService.deleteJobForUser(userId,jobId);
+    return userJobLinkService.deleteJobForUser(userId, jobId);
   }
 
   @DeleteMapping("/api/userJobLink/{userJobLinkId}")
@@ -33,9 +38,10 @@ public class UserJobLinkController {
     return userJobLinkService.deleteJobForUser(userJobLinkId);
   }
 
-  @PostMapping("/api/userJobLink/{userId}/{jobId}")
-  public boolean saveJobForUser(@PathVariable("userID") int userId, @PathVariable("jobId") String jobId) {
-    userJobLinkService.saveJobForUser(userId, jobId);
+  @PostMapping("/api/userJobLink/{userId}")
+  public boolean saveJobForUser(@PathVariable("userId") int userId, @RequestBody Job job) {
+    jobService.createJob(job);
+    userJobLinkService.saveJobForUser(userId, job.getId());
     return true;
   }
 

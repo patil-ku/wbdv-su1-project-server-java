@@ -1,6 +1,8 @@
 package com.example.wbdvsu1projectserverjava.controller;
 
 import com.example.wbdvsu1projectserverjava.models.Job;
+import com.example.wbdvsu1projectserverjava.models.Recruiter;
+import com.example.wbdvsu1projectserverjava.repositories.UserRepository;
 import com.example.wbdvsu1projectserverjava.services.JobService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,13 @@ public class JobController {
 
   @Autowired
   JobService jobService;
+  @Autowired
+  UserRepository userRepository;
 
-
-  @PostMapping("/api/jobs")
-  public boolean createUser(@RequestBody Job job) {
+  @PostMapping("/api/jobs/{userId}")
+  public boolean createUser(@RequestBody Job job, @PathVariable("userId") int userId) {
+    Recruiter recruiter = (Recruiter) userRepository.findById(userId).get();
+    job.setRecruiter(recruiter);
     return jobService.createJob(job);
   }
 
@@ -29,6 +34,7 @@ public class JobController {
   public Iterable<Job> getSpecificJobs(@PathVariable("skill") String skill, @PathVariable("location") String location) {
     return jobService.getSpecificJobs(skill, location);
   }
+
   @GetMapping("/api/jobs")
   public Iterable<Job> getAllJobs() {
     return jobService.getAllJobs();
