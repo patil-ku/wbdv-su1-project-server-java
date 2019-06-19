@@ -20,7 +20,7 @@ public class UserController {
 
   @GetMapping("api/users/skill")
   public Iterable<User> getAllUsersForSkill(@RequestBody String skillArray) {
-    return userService.getAllUsersForSkill(new String(""));
+    return userService.getAllUsersForSkill(new String("JAVA"));
   }
 
 }
