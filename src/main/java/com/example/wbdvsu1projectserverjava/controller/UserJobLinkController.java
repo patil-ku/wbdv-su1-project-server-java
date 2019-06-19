@@ -40,7 +40,7 @@ public class UserJobLinkController {
 
   @PostMapping("/api/userJobLink/{userId}")
   public boolean saveJobForUser(@PathVariable("userId") int userId, @RequestBody Job job) {
-    jobService.createJob(job,userId);
+    jobService.createJob(job,0);
     userJobLinkService.saveJobForUser(userId, job.getId());
     return true;
   }
