@@ -29,14 +29,13 @@ public class UserService {
   UserRepository userRepository;
 
 
-  @GetMapping("api/loggedIn/{username}")
-  public boolean isSessionMaintained(@PathVariable("username") String username, HttpSession session) {
+  @GetMapping("api/loggedIn")
+  public User isSessionMaintained(HttpSession session) {
   	User currUser = (User) session.getAttribute("currUser");
-    if (session != null
-            && currUser.getUsername().equalsIgnoreCase(username)) {
-      return true;
+    if (currUser != null) {
+      return currUser;
     }
-    return false;
+    return null;
   }
 
   @PostMapping("/api/register/student")
