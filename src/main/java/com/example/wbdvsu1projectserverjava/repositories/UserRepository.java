@@ -17,6 +17,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
   //SELECT * FROM `webdev-project`.user a
   // INNER JOIN `webdev-project`.student_skills b on a.id=b.student_id where b.skills like '%JAVA%';
-  //@NamedQuery("SELECT user FROM User user JOIN Student skill ON user.id=skill.student_id")
+  @Query("SELECT user FROM User user where first_name like %:skill% or username like %:skill%")
   public Iterable<User> getAllUsersForSkill(String skill);
 }
