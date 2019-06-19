@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Job {
   @Id
-  @GeneratedValue(generator = "uuid")
-  @GenericGenerator(name = "uuid", strategy = "uuid2")
   private String id;
   private String type;
   private String url;
