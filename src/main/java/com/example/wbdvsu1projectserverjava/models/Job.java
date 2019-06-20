@@ -21,8 +21,8 @@ public class Job {
   private String location;
   private String title;
   private String description;
-  private String howToApply;
-  private String companyLogo;
+  private String how_to_apply;
+  private String company_logo;
 
   public String getId() {
     return id;
@@ -96,20 +96,20 @@ public class Job {
     this.description = description;
   }
 
-  public String getHowToApply() {
-    return howToApply;
+  public String getHow_to_apply() {
+    return how_to_apply;
   }
 
-  public void setHowToApply(String howToApply) {
-    this.howToApply = howToApply;
+  public void setHow_to_apply(String how_to_apply) {
+    this.how_to_apply = how_to_apply;
   }
 
-  public String getCompanyLogo() {
-    return companyLogo;
+  public String getCompany_logo() {
+    return company_logo;
   }
 
-  public void setCompanyLogo(String companyLogo) {
-    this.companyLogo = companyLogo;
+  public void setCompany_logo(String company_logo) {
+    this.company_logo = company_logo;
   }
 
   public Recruiter getRecruiter() {

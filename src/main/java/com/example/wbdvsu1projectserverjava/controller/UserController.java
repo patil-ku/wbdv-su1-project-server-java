@@ -1,6 +1,7 @@
 package com.example.wbdvsu1projectserverjava.controller;
 
 
+import com.example.wbdvsu1projectserverjava.models.Skills;
 import com.example.wbdvsu1projectserverjava.models.User;
 import com.example.wbdvsu1projectserverjava.services.UserService;
 
@@ -18,9 +19,10 @@ public class UserController {
   @Autowired
   UserService userService;
 
-  @GetMapping("api/users/skill")
-  public Iterable<User> getAllUsersForSkill(@RequestBody String skillArray) {
-    return userService.getAllUsersForSkill(new String("JAVA"));
+  @GetMapping("api/users/skill/{skills}")
+  public Iterable<User> getAllUsersForSkill(@PathVariable("skills") String skillArray) {
+    String[] skills= skillArray.split(",");
+    return userService.getAllUsersForSkill(skills);
   }
 
 }

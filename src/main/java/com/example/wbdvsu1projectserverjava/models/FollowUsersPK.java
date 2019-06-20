@@ -1,6 +1,7 @@
 package com.example.wbdvsu1projectserverjava.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
@@ -33,5 +34,19 @@ public class FollowUsersPK implements Serializable {
 
   public void setFollowingUserId(int followingUserId) {
     this.followingUserId = followingUserId;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    FollowUsersPK that = (FollowUsersPK) o;
+    return userId == that.userId &&
+            followingUserId == that.followingUserId;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(userId, followingUserId);
   }
 }

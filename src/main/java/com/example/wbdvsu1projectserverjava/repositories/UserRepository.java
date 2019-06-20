@@ -13,7 +13,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   public Iterable<User> searchUserProfiles(@Param("username") String username);
 
 
-  @Query(value = "SELECT * FROM user a INNER JOIN student_skills b on a.id=b.student_id where b.skills like '%like'",
-          nativeQuery = true)
+  @Query("SELECT user FROM User user where skills like %:skill%")
   public Iterable<User> getAllUsersForSkill(@Param("skill") String skill);
 }

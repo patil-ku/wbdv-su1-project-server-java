@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -118,7 +122,11 @@ public class UserService {
     return userRepository.searchUserProfiles(username);
   }
 
-  public Iterable<User> getAllUsersForSkill(String skill) {
-    return userRepository.getAllUsersForSkill(skill);
+  public Iterable<User> getAllUsersForSkill(String[] skills) {
+    Set<User> users = new HashSet<>();
+    for (String skill: skills){
+      users.addAll((Collection<? extends User>) userRepository.getAllUsersForSkill(skill));
+    }
+    return users;
   }
 }

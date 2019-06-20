@@ -23,7 +23,7 @@ public class JobController {
   UserRepository userRepository;
 
   @PostMapping("/api/jobs/{userId}")
-  public boolean createUser(@RequestBody Job job, @PathVariable("userId") int userId) {
+  public boolean createJob(@RequestBody Job job, @PathVariable("userId") int userId) {
     return jobService.createJob(job, userId);
   }
 
