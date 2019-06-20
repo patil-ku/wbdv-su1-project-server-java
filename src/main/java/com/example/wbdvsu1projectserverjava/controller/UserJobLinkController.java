@@ -28,8 +28,8 @@ public class UserJobLinkController {
 
   }
 
-  @DeleteMapping("/api/userJobLink/{userId}{jobId:(/jobId/[^/]+?)?}")
-  public boolean deleteJobForUser(@PathVariable("userID") int userId, @PathVariable("jobId") String jobId) {
+  @DeleteMapping("/api/userJobLink/{userId}/{jobId}")
+  public boolean deleteJobForUser(@PathVariable("userId") int userId, @PathVariable("jobId") String jobId) {
     return userJobLinkService.deleteJobForUser(userId, jobId);
   }
 

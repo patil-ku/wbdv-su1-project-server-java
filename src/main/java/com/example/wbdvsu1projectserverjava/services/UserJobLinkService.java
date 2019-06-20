@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -34,6 +35,9 @@ public class UserJobLinkService {
 
 
   public boolean deleteJobForUser(int userId, String jobId) {
+    SavedUserJobs savedUserJobs = userJobLinkRepository.getLinkedJob(userId,jobId);
+
+    userJobLinkRepository.delete(savedUserJobs);
     return true;
   }
 
