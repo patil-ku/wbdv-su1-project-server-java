@@ -12,7 +12,7 @@ public class Job {
   private String id;
   private String type;
   private String url;
-  private String createdAt;
+  private String created_at;
   @ManyToOne
   @JsonIgnore
   private Recruiter recruiter;
@@ -48,12 +48,12 @@ public class Job {
     this.url = url;
   }
 
-  public String getCreatedAt() {
-    return createdAt;
+  public String getCreated_at() {
+    return created_at;
   }
 
-  public void setCreatedAt(String createdAt) {
-    this.createdAt = createdAt;
+  public void setCreated_at(String created_at) {
+    this.created_at = created_at;
   }
 
   public String getCompany() {
