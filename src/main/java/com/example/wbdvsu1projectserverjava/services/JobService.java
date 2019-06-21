@@ -32,12 +32,17 @@ public class JobService {
     Recruiter recruiter = (Recruiter) userRepository.findById(userId).get();
     job.setRecruiter(recruiter);
     try {
-      companyService.createCompany(new Company(job.getCompany(),job.getCompany_url()));
-    }catch (Exception e){
+      companyService.createCompany(new Company(job.getCompany(), job.getCompany_url()));
+    } catch (Exception e) {
       System.out.println("Company already created");
     }
-    jobRepository.save(job);
-    userJobLinkService.saveJobForUser(userId, job.getId());
+    try {
+      jobRepository.save(job);
+    } catch (Exception e) {
+      System.out.println("Job already exist");
+    }
+    if (userId != 0)
+      userJobLinkService.saveJobForUser(userId, job.getId());
     return true;
   }
 
