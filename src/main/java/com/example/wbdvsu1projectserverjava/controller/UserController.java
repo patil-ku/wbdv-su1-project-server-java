@@ -23,6 +23,7 @@ public class UserController {
   public Iterable<User> getAllUsersForSkill(@PathVariable("skills") String skillArray) {
     String[] skills= skillArray.split(",");
     return userService.getAllUsersForSkill(skills);
+ 
   }
 
 }
