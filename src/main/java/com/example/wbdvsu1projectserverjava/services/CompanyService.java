@@ -1,7 +1,9 @@
 package com.example.wbdvsu1projectserverjava.services;
 
 import com.example.wbdvsu1projectserverjava.models.Company;
+import com.example.wbdvsu1projectserverjava.models.Job;
 import com.example.wbdvsu1projectserverjava.repositories.CompanyRepository;
+import com.example.wbdvsu1projectserverjava.repositories.JobRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,9 @@ public class CompanyService {
 
   @Autowired
   CompanyRepository companyRepository;
+
+  @Autowired
+  JobRepository jobRepository;
 
   public Iterable<Company> getAllCompanies() {
     return companyRepository.findAll();
@@ -23,5 +28,10 @@ public class CompanyService {
 
   public Iterable<Company> getAllCompaniesByAlphabet(String letter) {
     return companyRepository.getAllCompaniesByAlphabet(letter);
+  }
+
+  public Iterable<Job> getAllJobsForACompany(int company) {
+    return jobRepository.getAllJobsForACompany(
+            companyRepository.findById(company).get().getCompany_name());
   }
 }

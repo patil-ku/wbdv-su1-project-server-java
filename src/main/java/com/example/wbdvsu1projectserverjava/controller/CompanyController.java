@@ -38,7 +38,7 @@ public class CompanyController {
   }
 
   @GetMapping("/api/companies/{company}")
-  public Iterable<Job> getAllJobsForACompany(@PathVariable("company") String company) {
-    return jobRepository.getAllJobsForACompany(company);
+  public Iterable<Job> getAllJobsForACompany(@PathVariable("company") int company) {
+    return companyService.getAllJobsForACompany(company);
   }
 }

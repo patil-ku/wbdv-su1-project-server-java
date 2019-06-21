@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface CompanyRepository extends CrudRepository<Company, String> {
+public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
   @Query("SELECT company from Company as company where company.company_name like :letter%")
   Iterable<Company> getAllCompaniesByAlphabet(@Param("letter") String letter);
