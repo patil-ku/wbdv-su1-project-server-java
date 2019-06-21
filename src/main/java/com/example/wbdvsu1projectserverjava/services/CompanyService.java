@@ -30,8 +30,8 @@ public class CompanyService {
     return companyRepository.getAllCompaniesByAlphabet(letter);
   }
 
-  public Iterable<Job> getAllJobsForACompany(int company) {
+  public Iterable<Job> getAllJobsForACompany(int companyId) {
     return jobRepository.getAllJobsForACompany(
-            companyRepository.findById(company).get().getCompany_name());
+            companyRepository.findById(companyId).get().getCompany_name());
   }
 }
