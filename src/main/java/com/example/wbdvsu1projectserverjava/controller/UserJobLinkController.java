@@ -1,6 +1,7 @@
 package com.example.wbdvsu1projectserverjava.controller;
 
 import com.example.wbdvsu1projectserverjava.models.Job;
+import com.example.wbdvsu1projectserverjava.models.User;
 import com.example.wbdvsu1projectserverjava.services.JobService;
 import com.example.wbdvsu1projectserverjava.services.UserJobLinkService;
 
@@ -44,5 +45,8 @@ public class UserJobLinkController {
     userJobLinkService.saveJobForUser(userId, job.getId());
     return true;
   }
-
+  @GetMapping("api/userJobLink/recentlySaved/{userId}")
+  public Iterable<Job> getRecentlySavedJobs(@PathVariable("userId") String userId) {
+    return userJobLinkService.getRecentlySavedJobs(userId);
+  }
 }
