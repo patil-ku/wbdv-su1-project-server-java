@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 public class JobController {
@@ -25,6 +27,14 @@ public class JobController {
   @PostMapping("/api/jobs/{userId}")
   public boolean createJob(@RequestBody Job job, @PathVariable("userId") int userId) {
     return jobService.createJob(job, userId);
+  }
+
+  @PostMapping("/api/jobs/")
+  public boolean createAllJob(@RequestBody List<Job> jobs) {
+     for(Job job:jobs){
+       jobService.createJob(job, 0);
+     }
+     return true;
   }
 
   @GetMapping("/api/jobs/{skill}/[location}")

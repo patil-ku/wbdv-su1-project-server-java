@@ -23,17 +23,22 @@ public class CompanyController {
   JobRepository jobRepository;
 
   @GetMapping("/api/companies/")
-  public Iterable<Company> getAllCompanies(){
+  public Iterable<Company> getAllCompanies() {
     return companyService.getAllCompanies();
   }
 
+  @GetMapping("/api/companies/getAllCompaniesByAlphabet/{letter}")
+  public Iterable<Company> getAllCompaniesByAlphabet(@PathVariable("letter") String letter) {
+    return companyService.getAllCompaniesByAlphabet(letter);
+  }
+
   @PostMapping("/api/companies/")
-  public Company createCompany(@RequestBody Company company){
+  public Company createCompany(@RequestBody Company company) {
     return companyService.createCompany(company);
   }
 
   @GetMapping("/api/companies/{company}")
-  public Iterable<Job> getAllJobsForACompany(@PathVariable("company") String company){
+  public Iterable<Job> getAllJobsForACompany(@PathVariable("company") String company) {
     return jobRepository.getAllJobsForACompany(company);
   }
 }

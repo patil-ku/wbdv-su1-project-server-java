@@ -31,7 +31,11 @@ public class JobService {
   public boolean createJob(Job job, int userId) {
     Recruiter recruiter = (Recruiter) userRepository.findById(userId).get();
     job.setRecruiter(recruiter);
-    companyService.createCompany(new Company(job.getCompany(),job.getCompanyUrl()));
+    try {
+      companyService.createCompany(new Company(job.getCompany(),job.getCompany_url()));
+    }catch (Exception e){
+      System.out.println("Company already created");
+    }
     jobRepository.save(job);
     userJobLinkService.saveJobForUser(userId, job.getId());
     return true;

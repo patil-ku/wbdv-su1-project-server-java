@@ -21,4 +21,7 @@ public class CompanyService {
   }
 
 
+  public Iterable<Company> getAllCompaniesByAlphabet(String letter) {
+    return companyRepository.getAllCompaniesByAlphabet(letter);
+  }
 }

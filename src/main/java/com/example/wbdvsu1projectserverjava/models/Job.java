@@ -17,7 +17,7 @@ public class Job {
   @JsonIgnore
   private Recruiter recruiter;
   private String company;
-  private String companyUrl;
+  private String company_url;
   private String location;
   private String title;
   private String description;
@@ -64,12 +64,12 @@ public class Job {
     this.company = company;
   }
 
-  public String getCompanyUrl() {
-    return companyUrl;
+  public String getCompany_url() {
+    return company_url;
   }
 
-  public void setCompanyUrl(String companyUrl) {
-    this.companyUrl = companyUrl;
+  public void setCompany_url(String company_url) {
+    this.company_url = company_url;
   }
 
   public String getLocation() {
