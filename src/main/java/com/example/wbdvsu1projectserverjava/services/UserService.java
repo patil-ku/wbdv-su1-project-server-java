@@ -114,7 +114,7 @@ public class UserService {
   public void deleteUser(@PathVariable("userId") Integer id) {
     User user = userRepository.findById(id).get();
     userRepository.delete(user);
-    System.out.print("DELETERE");
+    System.out.print("DELETE");
   }
 
   @GetMapping("/api/users/searchUserProfiles/{userId}")

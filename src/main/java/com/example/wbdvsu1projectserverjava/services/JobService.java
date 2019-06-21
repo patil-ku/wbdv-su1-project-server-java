@@ -47,7 +47,7 @@ public class JobService {
   }
 
   public Iterable<Job> getSpecificJobs(String skill, String location) {
-    return jobRepository.findAll();
+    return jobRepository.getSpecificJobs(skill, location);
   }
 
   public boolean updateJob(String jobId, Job newJob) {
@@ -59,5 +59,9 @@ public class JobService {
 
   public Iterable<Job> getAllJobs() {
     return jobRepository.findAll();
+  }
+
+  public Iterable<Job> getRecentlyPostedJobs() {
+    return jobRepository.getRecentlyPostedJobs();
   }
 }
