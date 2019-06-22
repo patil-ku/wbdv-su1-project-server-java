@@ -54,7 +54,7 @@ public class UserJobLinkService {
     return jobRepository.findAllById(allJobIds);
   }
 
-  public Iterable<Job> getRecentlySavedJobs(String userId) {
+  public Iterable<Job> getRecentlySavedJobs(int userId) {
     Iterable<SavedUserJobs> savedUserJobs = userJobLinkRepository.getRecentlySavedJobs(userId);
     List<String> jobs = new ArrayList<>();
     for (SavedUserJobs savedUserJobs1 : savedUserJobs) {

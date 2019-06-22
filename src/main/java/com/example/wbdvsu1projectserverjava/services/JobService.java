@@ -64,4 +64,8 @@ public class JobService {
   public Iterable<Job> getRecentlyPostedJobs() {
     return jobRepository.getRecentlyPostedJobs();
   }
+
+  public Job getJobById(String jobId) {
+    return jobRepository.findById(jobId).get();
+  }
 }

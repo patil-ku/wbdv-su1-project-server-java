@@ -4,6 +4,7 @@ import com.example.wbdvsu1projectserverjava.models.Job;
 import com.example.wbdvsu1projectserverjava.repositories.UserRepository;
 import com.example.wbdvsu1projectserverjava.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,11 @@ public class JobController {
   @GetMapping("/api/jobs")
   public Iterable<Job> getAllJobs() {
     return jobService.getAllJobs();
+  }
+
+  @GetMapping("/api/jobs/{jobId}")
+  public Job getJobById(@PathVariable("jobId") String jobId) {
+    return jobService.getJobById(jobId);
   }
 
   @GetMapping("/api/jobs/recentlyPosted")

@@ -46,7 +46,7 @@ public class UserJobLinkController {
     return true;
   }
   @GetMapping("api/userJobLink/recentlySaved/{userId}")
-  public Iterable<Job> getRecentlySavedJobs(@PathVariable("userId") String userId) {
+  public Iterable<Job> getRecentlySavedJobs(@PathVariable("userId") int userId) {
     return userJobLinkService.getRecentlySavedJobs(userId);
   }
 }
