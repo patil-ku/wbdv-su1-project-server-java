@@ -3,7 +3,6 @@ package com.example.wbdvsu1projectserverjava.controller;
 import com.example.wbdvsu1projectserverjava.models.Job;
 import com.example.wbdvsu1projectserverjava.repositories.UserRepository;
 import com.example.wbdvsu1projectserverjava.services.JobService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,14 +36,24 @@ public class JobController {
      return true;
   }
 
-  @GetMapping("/api/jobs/{skill}/[location}")
-  public Iterable<Job> getSpecificJobs(@PathVariable("skill") String skill, @PathVariable("location") String location) {
-    return jobService.getSpecificJobs(skill, location);
+
+  @GetMapping("/api/jobs/{details}")
+  public Iterable<Job> getSpecificJobs(@PathVariable("details") String detail) {
+    String[] details = detail.split("=");
+    if(details.length>2)
+    return jobService.getSpecificJobs(details[0], details[2]);
+    else
+    return jobService.getSpecificJobs(details[0], "");
   }
 
   @GetMapping("/api/jobs")
   public Iterable<Job> getAllJobs() {
     return jobService.getAllJobs();
+  }
+
+  @GetMapping("/api/jobs/recentlyPosted")
+  public Iterable<Job> getRecentlyPostedJobs() {
+    return jobService.getRecentlyPostedJobs();
   }
 
   @PutMapping("/api/jobs/{jobId}")
