@@ -11,7 +11,7 @@ public interface JobRepository extends CrudRepository<Job, String> {
   @Query("SELECT a from Job a where a.company = :company")
   Iterable<Job> getAllJobsForACompany(@Param("company") String company);
 
-  @Query("SELECT a from Job a where a.recruiter.id<>0 and a.location like %:location% or a.description like  %:skill%")
+  @Query("SELECT a from Job a where a.recruiter.id<>0 and a.location like %:location% and a.description like  %:skill%")
   Iterable<Job> getSpecificJobs(@Param("skill") String skill, @Param("location") String location);
 
   @Query(value = "SELECT * from job a where recruiter_id<>0 ORDER BY reference_id desc limit 3", nativeQuery = true)
