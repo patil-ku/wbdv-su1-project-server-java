@@ -19,5 +19,5 @@ public interface UserJobLinkRepository extends CrudRepository<SavedUserJobs, Int
   SavedUserJobs getLinkedJob(@Param("userId") int userId, @Param("jobId") String jobId);
 
   @Query(value = "SELECT * from saved_user_jobs a where a.user_id=:userId ORDER BY id desc limit 3", nativeQuery = true)
-  Iterable<SavedUserJobs> getRecentlySavedJobs(String userId);
+  Iterable<SavedUserJobs> getRecentlySavedJobs(@Param("userId") int userId);
 }
