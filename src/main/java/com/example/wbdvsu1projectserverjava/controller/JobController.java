@@ -38,7 +38,7 @@ public class JobController {
   }
 
 
-  @GetMapping("/api/jobs/{details}")
+  @GetMapping("/api/jobs/findByDetails/{details}")
   public Iterable<Job> getSpecificJobs(@PathVariable("details") String detail) {
     String[] details = detail.split("=");
     if(details.length>2)
