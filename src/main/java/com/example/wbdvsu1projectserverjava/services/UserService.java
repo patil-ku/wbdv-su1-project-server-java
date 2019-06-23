@@ -99,6 +99,7 @@ public class UserService {
     User user = userRepository.findById(id).get();
     user.setFirstName(newUser.getFirstName());
     user.setLastName(newUser.getLastName());
+    user.setPassword(newUser.getPassword());
     user.setEmail(newUser.getEmail());
     user.setPhone(newUser.getPhone());
     user.setRole(newUser.getRole());
