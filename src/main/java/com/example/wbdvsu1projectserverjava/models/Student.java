@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 public class Student extends User {
 
   private String university;
-  private float gpa;
+  private String gpa;
   private String linkedIn;
   private String degree;
 
@@ -26,11 +26,11 @@ public class Student extends User {
     this.university = university;
   }
 
-  public float getGpa() {
+  public String getGpa() {
     return gpa;
   }
 
-  public void setGpa(float gpa) {
+  public void setGpa(String gpa) {
     this.gpa = gpa;
   }
 

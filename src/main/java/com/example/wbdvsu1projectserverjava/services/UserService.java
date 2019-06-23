@@ -44,13 +44,12 @@ public class UserService {
 
   @PostMapping("/api/register/student")
   public User createStudent(@RequestBody Student user, HttpSession session) {
-    session.setAttribute("currUser", user);
     return userRepository.save(user);
   }
 
   @PostMapping("/api/register/recruiter")
   public User createRecruiter(@RequestBody Recruiter user, HttpSession session) {
-    session.setAttribute("currUser", user);
+    //session.setAttribute("currUser", user);
     return userRepository.save(user);
   }
 
